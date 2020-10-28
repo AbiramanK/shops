@@ -9,7 +9,8 @@ import {
     AuthReducer,
     LoaderReducer,
     ProductReducer,
-    CartReducer
+    CartReducer,
+    CheckoutReducer
 } from './../reducers';
 
 export const history = createBrowserHistory()
@@ -20,7 +21,8 @@ const rootReducer = (history: any) => combineReducers({
     auth: AuthReducer,
     loader: LoaderReducer,
     product: ProductReducer,
-    cart: CartReducer
+    cart: CartReducer,
+    checkout: CheckoutReducer
 });
 
 export default rootReducer;

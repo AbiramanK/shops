@@ -10,12 +10,12 @@ import {
 } from './../Auth';
 
 
-export const carts = async () => {
+export const checkouts = async () => {
 
     const accessToken = await GetAccessToken();
 
     return new Promise((resolve, reject) => {
-        fetch(`${BASE_API}cart`, {
+        fetch(`${BASE_API}checkout`, {
             headers: {
                 'Authorization': `Bearer ${accessToken}`,
             },
@@ -30,12 +30,12 @@ export const carts = async () => {
     })
 }
 
-export const addCart = async (params: { productId: any, productCount: any, totalPrice: any }) => {
+export const addCheckout = async (params: { productId: any, productCount: any, totalPrice: any }) => {
 
     const accessToken = await GetAccessToken();
 
     return new Promise((resolve, reject) => {
-        fetch(`${BASE_API}cart`, {
+        fetch(`${BASE_API}checkout`, {
             headers: {
                 'Authorization': `Bearer ${accessToken}`,
                 'Accept': 'application/json',
@@ -57,12 +57,12 @@ export const addCart = async (params: { productId: any, productCount: any, total
     })
 }
 
-export const removeCartById = async (params: {id: any}) => {
+export const removeCheckoutById = async (params: {id: any}) => {
 
     const accessToken = await GetAccessToken();
 
     return new Promise((resolve, reject) => {
-        fetch(`${BASE_API}cart/${params.id}`, {
+        fetch(`${BASE_API}checkout/${params.id}`, {
             headers: {
                 'Authorization': `Bearer ${accessToken}`
             },
@@ -77,14 +77,14 @@ export const removeCartById = async (params: {id: any}) => {
     })
 }
 
-export const updateCartById = async (params: { type: updateCartByIdTypes, id: any }) => {
+export const updateCheckoutById = async (params: { type: updateCheckoutByIdTypes, id: any }) => {
 
-    console.log("cart update params", params)
+    console.log("Checkout update params", params)
 
     const accessToken = await GetAccessToken();
 
     return new Promise((resolve, reject) => {
-        fetch(`${BASE_API}cart/${params.id}`, {
+        fetch(`${BASE_API}checkout/${params.id}`, {
             headers: {
                 'Authorization': `Bearer ${accessToken}`,
                 'Accept': 'application/json',
@@ -93,7 +93,7 @@ export const updateCartById = async (params: { type: updateCartByIdTypes, id: an
             method: 'PUT',
             body: JSON.stringify({
                 type: params.type,
-                cart_id: params.id
+                Checkout_id: params.id
             })
         })
             .then((res) => {
@@ -105,4 +105,4 @@ export const updateCartById = async (params: { type: updateCartByIdTypes, id: an
     })
 }
 
-enum updateCartByIdTypes { "INCREMENT", "DECREMENT" };
+enum updateCheckoutByIdTypes { "INCREMENT", "DECREMENT" };

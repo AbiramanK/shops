@@ -26,6 +26,12 @@ import {
     removeCart,
     updateCart
 } from './Cart';
+import {
+    getCheckouts,
+    addCheckouts,
+    removeCheckout,
+    updateCheckout
+} from './Checkout';
 
 export default function* rootSaga() {
     yield all([
@@ -45,6 +51,11 @@ export default function* rootSaga() {
         getCarts(),
         addCarts(),
         removeCart(),
-        updateCart()
+        updateCart(),
+
+        getCheckouts(),
+        addCheckouts(),
+        removeCheckout(),
+        updateCheckout(),
     ])
 }
