@@ -8,7 +8,8 @@ import {
 import {
     AuthReducer,
     LoaderReducer,
-    ProductReducer
+    ProductReducer,
+    CartReducer
 } from './../reducers';
 
 export const history = createBrowserHistory()
@@ -18,7 +19,8 @@ const rootReducer = (history: any) => combineReducers({
     router: connectRouter(history),
     auth: AuthReducer,
     loader: LoaderReducer,
-    product: ProductReducer
+    product: ProductReducer,
+    cart: CartReducer
 });
 
 export default rootReducer;

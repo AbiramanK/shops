@@ -20,6 +20,12 @@ import {
     addProducts,
     removeProduct
 } from './Product';
+import {
+    getCarts,
+    addCarts,
+    removeCart,
+    updateCart
+} from './Cart';
 
 export default function* rootSaga() {
     yield all([
@@ -34,6 +40,11 @@ export default function* rootSaga() {
 
         getProducts(),
         addProducts(),
-        removeProduct()
+        removeProduct(),
+
+        getCarts(),
+        addCarts(),
+        removeCart(),
+        updateCart()
     ])
 }
