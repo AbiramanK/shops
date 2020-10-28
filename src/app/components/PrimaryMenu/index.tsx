@@ -37,6 +37,7 @@ const {
 export interface IPrimaryMenuProps extends RouteComponentProps {
     children: any;
     logout: any;
+    numberOfCarts: any;
 }
 
 export interface IPrimaryMenuState {
@@ -88,41 +89,6 @@ export class PrimaryMenu extends React.Component<IPrimaryMenuProps, IPrimaryMenu
     public render() {
         return (
             <Layout className="layout">
-                {/* <Header
-                    className="primary-menu-header"
-                    style={{
-                        backgroundColor: "#218838"
-                    }}
-                >
-                    <div className="logo" />
-                    <Menu 
-                        theme="dark" 
-                        mode="horizontal" 
-                        defaultSelectedKeys={['2']}
-                        style={{
-                            backgroundColor: "#218838",
-                        }}
-                    >
-                        <Menu.Item key="1">Home</Menu.Item>
-                        <Menu.Item key="2">About Us</Menu.Item>
-                        <Menu.Item key="3">Contact Us</Menu.Item>
-                    </Menu>
-
-                    <Menu 
-                        theme="dark" 
-                        mode="horizontal" 
-                        defaultSelectedKeys={['2']}
-                        style={{
-                            backgroundColor: "#218838",
-                            float: 'right'
-                        }}
-                    >
-                        <Menu.Item key="1">Home</Menu.Item>
-                        <Menu.Item key="2">About Us</Menu.Item>
-                        <Menu.Item key="3">Contact Us</Menu.Item>
-                    </Menu>
-
-                </Header> */}
                 <nav
                     className="navbar navbar-expand-lg navbar-light fixed-top"
                     style={{
@@ -160,7 +126,7 @@ export class PrimaryMenu extends React.Component<IPrimaryMenuProps, IPrimaryMenu
                                     <Link className="nav-link primary-menu-nav-link" style={{ color: "#FFFFFF" }} to={"#"}>Contact Us</Link>
                                 </li>
                                 <li className="nav-item">
-                                    <Badge size="default" count={5}>
+                                    <Badge size="default" count={this.props.numberOfCarts}>
                                         <Link className="nav-link primary-menu-nav-link" style={{ color: "#FFFFFF" }} to={"/cart"}>
                                             <ShoppingCartOutlined 
                                                 style={{
@@ -179,7 +145,7 @@ export class PrimaryMenu extends React.Component<IPrimaryMenuProps, IPrimaryMenu
                             placement="bottomCenter"
                             arrow
                             className="primary-menu-nav-link"
-                        // trigger="click"
+                            trigger={["click"]}
                         >
                             <span>
                                 <Avatar

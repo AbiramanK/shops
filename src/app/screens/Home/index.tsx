@@ -35,6 +35,7 @@ export interface IHomeProps extends RouteComponentProps{
   productRemoveRequest: any;
   logoutRequest: any;
   products: any;
+  carts: any;
 }
 
 export interface IHomeState {
@@ -70,6 +71,7 @@ export class Home extends Component<IHomeProps, IHomeState> {
         />
         <PrimaryMenu
           logout={this.props.logoutRequest}
+          numberOfCarts={this.props.carts.length}
         >
           {this.props.products.map((product: any, index: any) => {
             return (
@@ -92,7 +94,8 @@ export class Home extends Component<IHomeProps, IHomeState> {
 const mapStateToProps = (state: any) => {
   return {
     isLoading: state.loader.isLoading,
-    products: state.product.products
+    products: state.product.products,
+    carts: state.cart.carts
   }
 }
 

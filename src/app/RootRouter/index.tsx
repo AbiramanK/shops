@@ -18,7 +18,8 @@ import {
 import {
   Login,
   Register,
-  Home
+  Home,
+  Cart
 } from './../screens';
 import "./index.css";
 
@@ -51,14 +52,19 @@ export class RootRouter extends Component<ILoginProps, ILoginState> {
                 <Login />
               </Route>
               <Route
+                path="/register"
+              >
+                <Register />
+              </Route>
+              <Route
                 path="/home"
               >
                 <Home />
               </Route>
               <Route
-                path="/register"
+                path="/cart"
               >
-                <Register />
+                <Cart />
               </Route>
             </Switch>
           </React.Suspense>
