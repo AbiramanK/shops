@@ -5,14 +5,25 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import 'bootstrap/dist/css/bootstrap.css';
 import store from "./app/redux/ConfigStore";
+import { createBrowserHistory } from 'history';
+import { ConnectedRouter } from 'connected-react-router';
+import { ToastContainer, toast } from 'react-toastify';
+import "antd/dist/antd.css"
+
+const history = createBrowserHistory();
 
 const { Provider } = require('react-redux');
 
 ReactDOM.render(
   <Provider store={store}>
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
+    <ConnectedRouter
+      history={history}
+    >
+      <React.StrictMode>
+        <App />
+        <ToastContainer />
+      </React.StrictMode>
+    </ConnectedRouter>
   </Provider>,
   document.getElementById('root')
 );

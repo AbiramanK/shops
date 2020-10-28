@@ -1,5 +1,7 @@
-import Login from './Login';
-import Register from './Register';
+import {
+    Login,
+    Register
+} from './Auth';
 import Home from './Home';
 
 export {
