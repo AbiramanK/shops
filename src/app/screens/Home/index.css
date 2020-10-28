@@ -12,3 +12,11 @@ body {
     font-weight: 400;
     font-family: 'Fira Sans', sans-serif;
 }
+
+.home-back-to-top {
+    color: #28a745;
+}
+
+.ant-back-top-icon {
+    background-color: #28a745;
+}

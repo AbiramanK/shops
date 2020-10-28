@@ -65,7 +65,9 @@ export class Home extends Component<IHomeProps, IHomeState> {
       <div
         className="product-root-div"
       >
-        <BackTop />
+        <BackTop 
+          className="home-back-to-top"
+        />
         <PrimaryMenu
           logout={this.props.logoutRequest}
         >
