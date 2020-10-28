@@ -15,9 +15,15 @@ import {
     ShoppingCartOutlined
 } from '@ant-design/icons';
 import {
-    Link
+    Link,
+    withRouter,
+    RouteComponentProps
 } from 'react-router-dom';
 
+import {
+    GetAccessToken,
+    RemoveAccessToken
+} from './../../actions/Auth';
 
 const {
     Header,
@@ -28,15 +34,16 @@ const {
     SubMenu
 } = Menu;
 
-export interface IPrimaryMenuProps {
+export interface IPrimaryMenuProps extends RouteComponentProps {
     children: any;
+    logout: any;
 }
 
 export interface IPrimaryMenuState {
     initial: any;
 }
 
-export default class PrimaryMenu extends React.Component<IPrimaryMenuProps, IPrimaryMenuState> {
+export class PrimaryMenu extends React.Component<IPrimaryMenuProps, IPrimaryMenuState> {
     constructor(props: IPrimaryMenuProps) {
         super(props);
 
@@ -46,9 +53,9 @@ export default class PrimaryMenu extends React.Component<IPrimaryMenuProps, IPri
     }
 
     signOut = () => {
-        // logout();
-        // removeAccessToken();
-        // this.props.history.push("/");
+        this.props.logout();
+        RemoveAccessToken();
+        this.props.history.push("/");
     }
 
     userMenu = () => {
@@ -132,7 +139,7 @@ export default class PrimaryMenu extends React.Component<IPrimaryMenuProps, IPri
                             />
                             <Link
                                 className="navbar-brand title-style"
-                                to={"/login"}
+                                to={"/"}
                                 style={{
                                     color: "#FFFFFF"
                                 }}
@@ -208,3 +215,5 @@ export default class PrimaryMenu extends React.Component<IPrimaryMenuProps, IPri
         );
     }
 }
+
+export default withRouter(PrimaryMenu);

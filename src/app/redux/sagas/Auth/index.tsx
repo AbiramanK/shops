@@ -8,9 +8,16 @@ import {
     handleRegisterResponse
 } from './Register';
 
+import {
+    makeLogout,
+    handleLogoutResponse
+} from './Logout';
+
 export {
     makeLogin,
     handleLoginResponse,
     makeRegister,
-    handleRegisterResponse
+    handleRegisterResponse,
+    makeLogout,
+    handleLogoutResponse
 }

@@ -2,6 +2,9 @@ import {
     LOGIN_REQUEST,
     LOGIN_REQUEST_SUCCESS,
 
+    LOGOUT_REQUEST,
+    LOGOUT_REQUEST_SUCCESS,
+
     REGISTER_REQUEST,
     REGISTER_REQUEST_SUCCESS
 } from "./../../Contants";
@@ -28,13 +31,24 @@ const AuthReducer = (state = INITIAL_STATE, action: any) => {
                 ...state,
                 userDetails: action.payload
             };
+        case LOGOUT_REQUEST:
+
+            return {
+                ...state,
+            };
+        case LOGOUT_REQUEST_SUCCESS:
+
+            return {
+                ...state,
+                userDetails: {}
+            };
 
         case REGISTER_REQUEST:
 
             return {
                 ...state,
             };
-            
+
         case REGISTER_REQUEST_SUCCESS:
 
             return {

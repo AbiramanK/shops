@@ -1,10 +1,17 @@
 import React, {
   Component
 } from 'react';
-import { bindActionCreators } from 'redux';
+import { 
+  bindActionCreators,
+  compose 
+} from 'redux';
 import {
   BackTop
 } from 'antd';
+import {
+  withRouter,
+  RouteComponentProps
+} from 'react-router-dom';
 
 import {
   ProductItem,
@@ -15,14 +22,18 @@ import {
   productAddRequest,
   productRemoveRequest
 } from './../../redux/actions/Product';
+import {
+  logoutRequest
+} from './../../redux/actions/Auth';
 import "./index.css";
 
 const { connect } = require('react-redux');
 
-export interface IHomeProps {
+export interface IHomeProps extends RouteComponentProps{
   productGetRequest: any;
   productAddRequest: any;
   productRemoveRequest: any;
+  logoutRequest: any;
   products: any;
 }
 
@@ -55,7 +66,9 @@ export class Home extends Component<IHomeProps, IHomeState> {
         className="product-root-div"
       >
         <BackTop />
-        <PrimaryMenu>
+        <PrimaryMenu
+          logout={this.props.logoutRequest}
+        >
           {this.props.products.map((product: any, index: any) => {
             return (
               <ProductItem
@@ -85,8 +98,11 @@ const mapDispatchToProps = (dispatch: any) => {
   return bindActionCreators({
     productGetRequest,
     productAddRequest,
-    productRemoveRequest
+    productRemoveRequest,
+    logoutRequest
   }, dispatch);
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Home)
+export default withRouter(
+  connect(mapStateToProps, mapDispatchToProps)(Home)
+)

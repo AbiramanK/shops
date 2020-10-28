@@ -10,7 +10,10 @@ import {
     handleLoginResponse,
 
     makeRegister,
-    handleRegisterResponse
+    handleRegisterResponse,
+
+    makeLogout,
+    handleLogoutResponse
 } from './Auth';
 import {
     getProducts,
@@ -25,6 +28,9 @@ export default function* rootSaga() {
 
         makeRegister(),
         handleRegisterResponse(),
+
+        makeLogout(),
+        handleLogoutResponse(),
 
         getProducts(),
         addProducts(),
