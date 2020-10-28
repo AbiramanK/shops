@@ -14,25 +14,23 @@ import {
 
 
 const INITIAL_STATE = {
-    products: {}
+    products: []
 };
 
 const ProductReducer = (state = INITIAL_STATE, action: any) => {
-
-    console.log("reducer action ProductReducer", action)
 
     switch (action.type) {
 
         case PRODUCT_GET_REQUEST:
 
             return {
-                ...state,
-                products: action.payload.data
+                ...state
             };
         case PRODUCT_GET_REQUEST_SUCCESS:
 
             return {
-                ...state
+                ...state,
+                products: action.payload.data
             };
 
         case PRODUCT_GET_REQUEST_ERROR:

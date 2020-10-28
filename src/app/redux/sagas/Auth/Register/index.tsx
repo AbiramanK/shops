@@ -44,7 +44,7 @@ export function* makeRegister() {
 
 function* callRegisterApi(action: any) {
   try {
-    yield put(loaderActive());
+    // yield put(loaderActive());
     const data = yield call(register, action.payload);
     yield put(registerRequestSuccess(data));
     yield put(push('/home'));
@@ -53,7 +53,7 @@ function* callRegisterApi(action: any) {
       registerRequestError(e)
     ]);
   } finally {
-    yield put(loaderStop());
+    // yield put(loaderStop());
   }
 }
 

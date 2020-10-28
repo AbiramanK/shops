@@ -46,7 +46,7 @@ import {
 } from './../../actions/Loader';
 
 export function* getProducts() {
-    yield takeLatest(productGetRequest, callProductApi);
+    yield takeLatest(PRODUCT_GET_REQUEST, callProductApi);
 }
 
 function* callProductApi(action: any) {
@@ -64,7 +64,7 @@ function* callProductApi(action: any) {
 }
 
 export function* addProducts() {
-    yield takeLatest(productAddRequest, callAddProductApi);
+    yield takeLatest(PRODUCT_ADD_REQUEST, callAddProductApi);
 }
 
 function* callAddProductApi(action: any) {
@@ -82,7 +82,7 @@ function* callAddProductApi(action: any) {
 }
 
 export function* removeProduct() {
-    yield takeLatest(productRemoveRequest, callRemoveProductApi);
+    yield takeLatest(PRODUCT_REMOVE_REQUEST, callRemoveProductApi);
 }
 
 function* callRemoveProductApi(action: any) {
