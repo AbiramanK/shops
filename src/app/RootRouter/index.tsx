@@ -19,7 +19,8 @@ import {
   Login,
   Register,
   Home,
-  Cart
+  Cart,
+  Checkout
 } from './../screens';
 import "./index.css";
 
@@ -65,6 +66,11 @@ export class RootRouter extends Component<ILoginProps, ILoginState> {
                 path="/cart"
               >
                 <Cart />
+              </Route>
+              <Route
+                path="/checkout"
+              >
+                <Checkout />
               </Route>
             </Switch>
           </React.Suspense>

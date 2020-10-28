@@ -12,7 +12,8 @@ import {
     LogoutOutlined,
     DownOutlined,
     UserOutlined,
-    ShoppingCartOutlined
+    ShoppingCartOutlined,
+    CheckSquareOutlined
 } from '@ant-design/icons';
 import {
     Link,
@@ -38,6 +39,7 @@ export interface IPrimaryMenuProps extends RouteComponentProps {
     children: any;
     logout: any;
     numberOfCarts: any;
+    numberOfCheckouts: any;
 }
 
 export interface IPrimaryMenuState {
@@ -129,6 +131,17 @@ export class PrimaryMenu extends React.Component<IPrimaryMenuProps, IPrimaryMenu
                                     <Badge size="default" count={this.props.numberOfCarts}>
                                         <Link className="nav-link primary-menu-nav-link" style={{ color: "#FFFFFF" }} to={"/cart"}>
                                             <ShoppingCartOutlined 
+                                                style={{
+                                                    fontSize: 18
+                                                }}
+                                            />
+                                        </Link>
+                                    </Badge>
+                                </li>
+                                <li className="nav-item">
+                                    <Badge size="default" count={this.props.numberOfCheckouts}>
+                                        <Link className="nav-link primary-menu-nav-link" style={{ color: "#FFFFFF" }} to={"/checkout"}>
+                                            <CheckSquareOutlined 
                                                 style={{
                                                     fontSize: 18
                                                 }}

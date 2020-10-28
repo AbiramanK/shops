@@ -24,6 +24,9 @@ import {
   cartUpdateRequest
 } from './../../redux/actions/Cart';
 import {
+  checkoutGetRequest
+} from './../../redux/actions/Checkout';
+import {
   logoutRequest
 } from './../../redux/actions/Auth';
 import "./index.css";
@@ -35,8 +38,10 @@ export interface ICartProps extends RouteComponentProps{
   cartAddRequest: any;
   cartRemoveRequest: any;
   cartUpdateRequest: any;
+  checkoutGetRequest: any;
   logoutRequest: any;
   carts: any;
+  checkouts: any;
 }
 
 export interface ICartState {
@@ -60,7 +65,12 @@ export class Cart extends Component<ICartProps, ICartState> {
 
   componentDidMount = () => {
     this.loadCarts();
+    this.loadCheckouts();
   };
+
+  loadCheckouts = () => {
+    this.props.checkoutGetRequest();
+  }
 
   loadCarts = () => {
     this.props.cartGetRequest();
@@ -88,6 +98,7 @@ export class Cart extends Component<ICartProps, ICartState> {
         <PrimaryMenu
           logout={this.props.logoutRequest}
           numberOfCarts={this.props.carts.length}
+          numberOfCheckouts={this.props.checkouts.length}
         >
           {this.props.carts.map((cart: any, index: any) => {
             return (
@@ -116,7 +127,8 @@ const mapStateToProps = (state: any) => {
   return {
     isLoading: state.loader.isLoading,
     products: state.product.products,
-    carts: state.cart.carts
+    carts: state.cart.carts,
+    checkouts: state.checkout.checkouts
   }
 }
 
@@ -126,6 +138,7 @@ const mapDispatchToProps = (dispatch: any) => {
     cartAddRequest,
     cartRemoveRequest,
     cartUpdateRequest,
+    checkoutGetRequest,
     logoutRequest
   }, dispatch);
 }

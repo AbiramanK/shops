@@ -1,0 +1,22 @@
+.checkout-item-root-div {
+    display: flex;
+    width: 200px;
+    height: 250px;
+    opacity: 0.8;
+    margin: 20px;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    border-radius: 3px;
+    padding: 10px;
+    background-color: #FFFFFF;
+}
+
+.checkout-item-shadow-effect {
+    box-shadow: 2px 2px 4px #000;
+}
+
+.checkout-item-description {
+    color: grey;
+    font-size: 13px;
+}

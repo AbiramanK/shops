@@ -18,7 +18,7 @@ import {
 
 
 const INITIAL_STATE = {
-    carts: []
+    checkouts: []
 };
 
 const CheckReducer = (state = INITIAL_STATE, action: any) => {
@@ -34,7 +34,7 @@ const CheckReducer = (state = INITIAL_STATE, action: any) => {
 
             return {
                 ...state,
-                carts: action.payload.data
+                checkouts: action.payload.data
             };
 
         case CHECKOUT_GET_REQUEST_ERROR:

@@ -4,10 +4,12 @@ import {
 } from './Auth';
 import Home from './Home';
 import Cart from './Cart';
+import Checkout from './Checkout';
 
 export {
     Login,
     Register,
     Home,
-    Cart
+    Cart,
+    Checkout
 }

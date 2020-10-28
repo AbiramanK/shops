@@ -1,0 +1,22 @@
+.product-root-div {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+body {
+    /* background: #1C8EF9 !important; */
+    background-color: #FFFFFF !important;
+    min-height: 100vh;
+    display: flex;
+    font-weight: 400;
+    font-family: 'Fira Sans', sans-serif;
+}
+
+.checkout-back-to-top {
+    color: #28a745;
+}
+
+.ant-back-top-icon {
+    background-color: #28a745;
+}
