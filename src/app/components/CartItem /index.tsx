@@ -25,6 +25,7 @@ export interface ICartItemProps {
   productCount: any;
   totalPrice: any;
   removeCart: any;
+  updateCart: any;
 }
 
 export interface ICartItemState {
@@ -39,15 +40,21 @@ export class CartItem extends React.Component<ICartItemProps, ICartItemState> {
   }
 
   removeCart = () => {
-    this.props.removeCart(this.props.id);
+    this.props.removeCart({id: this.props.id});
   }
 
   incrementCartItemCount = () => {
-
+    this.props.updateCart({
+      id: this.props.id,
+      type: "INCREMENT"
+    })
   }
 
   decrementCartItemCount = () => {
-
+    this.props.updateCart({
+      id: this.props.id,
+      type: "DECREMENT"
+    })
   }
 
   public render() {
@@ -91,10 +98,11 @@ export class CartItem extends React.Component<ICartItemProps, ICartItemState> {
             <button
               type="button"
               className="btn btn-danger col-3"
-              onClick={this.incrementCartItemCount}
+              onClick={this.decrementCartItemCount}
             >
               <MinusOutlined />
             </button>
+
             <input
               // className="col-3"
               style={{
@@ -106,11 +114,12 @@ export class CartItem extends React.Component<ICartItemProps, ICartItemState> {
               }}
               disabled
               value={this.props.productCount}
-              onClick={this.decrementCartItemCount}
             />
+
             <button
               type="button"
               className="btn btn-success col-3"
+              onClick={this.incrementCartItemCount}
             >
               <PlusOutlined />
             </button>

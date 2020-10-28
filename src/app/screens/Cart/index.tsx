@@ -43,6 +43,8 @@ export interface ICartState {
   carts: any;
 }
 
+enum updateCartByIdTypes { "INCREMENT", "DECREMENT" };
+
 export class Cart extends Component<ICartProps, ICartState> {
   constructor(props: ICartProps) {
     super(props);
@@ -53,6 +55,7 @@ export class Cart extends Component<ICartProps, ICartState> {
 
     this.loadCarts = this.loadCarts.bind(this);
     this.removeCart = this.removeCart.bind(this);
+    this.updateCart = this.updateCart.bind(this);
   }
 
   componentDidMount = () => {
@@ -63,8 +66,15 @@ export class Cart extends Component<ICartProps, ICartState> {
     this.props.cartGetRequest();
   }
 
-  removeCart = (id: any) => {
-    this.props.cartRemoveRequest(id)
+  removeCart = (params: {id: any}) => {
+    this.props.cartRemoveRequest({id: params.id})
+  }
+
+  updateCart = (params: {id: any, type: updateCartByIdTypes}) => {
+    this.props.cartUpdateRequest({
+      id: params.id, 
+      type: params.type
+    })
   }
 
   public render() {
@@ -92,6 +102,7 @@ export class Cart extends Component<ICartProps, ICartState> {
                 totalPrice={cart.totalPrice}
                 productCount={cart.product_count}
                 removeCart={this.removeCart}
+                updateCart={this.updateCart}
               />
             )
           })}

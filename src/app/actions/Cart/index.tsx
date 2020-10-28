@@ -9,6 +9,7 @@ import {
     GetAccessToken
 } from './../Auth';
 import { EnumType } from 'typescript';
+import { CartItem } from '../../components';
 
 
 export const carts = async () => {
@@ -58,12 +59,12 @@ export const addCart = async (params: { productId: any, productCount: any, total
     })
 }
 
-export const removeCartById = async (id: any) => {
+export const removeCartById = async (params: {id: any}) => {
 
     const accessToken = await GetAccessToken();
 
     return new Promise((resolve, reject) => {
-        fetch(`${BASE_API}cart/${id}`, {
+        fetch(`${BASE_API}cart/${params.id}`, {
             headers: {
                 'Authorization': `Bearer ${accessToken}`
             },
@@ -78,12 +79,14 @@ export const removeCartById = async (id: any) => {
     })
 }
 
-export const updateCartById = async (params: { type: updateCartByIdTypes, cartId: any }) => {
+export const updateCartById = async (params: { type: updateCartByIdTypes, id: any }) => {
+
+    console.log("cart update params", params)
 
     const accessToken = await GetAccessToken();
 
     return new Promise((resolve, reject) => {
-        fetch(`${BASE_API}cart`, {
+        fetch(`${BASE_API}cart/${params.id}`, {
             headers: {
                 'Authorization': `Bearer ${accessToken}`,
                 'Accept': 'application/json',
@@ -92,7 +95,7 @@ export const updateCartById = async (params: { type: updateCartByIdTypes, cartId
             method: 'PUT',
             body: JSON.stringify({
                 type: params.type,
-                cart_id: params.cartId
+                cart_id: params.id
             })
         })
             .then((res) => {

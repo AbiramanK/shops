@@ -117,10 +117,8 @@ function* callUpdateCartApi(action: any) {
     try {
         yield put(loaderActive());
         const data = yield call(updateCartById, action.payload);
-        yield [
-            put(cartUpdateRequestSuccess(data)),
-            call(getCarts)
-        ];
+        yield put(cartUpdateRequestSuccess(data));
+        yield put(cartGetRequest(action));
     } catch (e) {
         yield all([
             cartRemoveRequestError(e)
