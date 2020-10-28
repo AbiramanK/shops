@@ -99,6 +99,7 @@ function* callRemoveCartApi(action: any) {
         yield put(loaderActive());
         const data = yield call(removeCartById, action.payload);
         yield put(cartRemoveRequestSuccess(data));
+        yield put(cartGetRequest(action));
     } catch (e) {
         yield all([
             cartRemoveRequestError(e)
@@ -109,7 +110,7 @@ function* callRemoveCartApi(action: any) {
 }
 
 export function* updateCart() {
-    yield takeLatest(CART_REMOVE_REQUEST, callUpdateCartApi);
+    yield takeLatest(CART_UPDATE_REQUEST, callUpdateCartApi);
 }
 
 function* callUpdateCartApi(action: any) {

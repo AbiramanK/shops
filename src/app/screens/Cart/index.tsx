@@ -52,6 +52,7 @@ export class Cart extends Component<ICartProps, ICartState> {
     }
 
     this.loadCarts = this.loadCarts.bind(this);
+    this.removeCart = this.removeCart.bind(this);
   }
 
   componentDidMount = () => {
@@ -60,6 +61,10 @@ export class Cart extends Component<ICartProps, ICartState> {
 
   loadCarts = () => {
     this.props.cartGetRequest();
+  }
+
+  removeCart = (id: any) => {
+    this.props.cartRemoveRequest(id)
   }
 
   public render() {
@@ -86,6 +91,7 @@ export class Cart extends Component<ICartProps, ICartState> {
                 counterfiet={cart.product.counterfielt}
                 totalPrice={cart.totalPrice}
                 productCount={cart.product_count}
+                removeCart={this.removeCart}
               />
             )
           })}

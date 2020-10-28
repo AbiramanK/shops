@@ -23,6 +23,9 @@ import {
   productRemoveRequest
 } from './../../redux/actions/Product';
 import {
+  cartGetRequest
+} from './../../redux/actions/Cart';
+import {
   logoutRequest
 } from './../../redux/actions/Auth';
 import "./index.css";
@@ -33,6 +36,7 @@ export interface IHomeProps extends RouteComponentProps{
   productGetRequest: any;
   productAddRequest: any;
   productRemoveRequest: any;
+  cartGetRequest: any;
   logoutRequest: any;
   products: any;
   carts: any;
@@ -55,10 +59,15 @@ export class Home extends Component<IHomeProps, IHomeState> {
 
   componentDidMount = () => {
     this.loadProducts();
+    this.loadCarts();
   };
 
   loadProducts = () => {
     this.props.productGetRequest();
+  }
+
+  loadCarts = () => {
+    this.props.cartGetRequest();
   }
 
   public render() {
@@ -104,6 +113,7 @@ const mapDispatchToProps = (dispatch: any) => {
     productGetRequest,
     productAddRequest,
     productRemoveRequest,
+    cartGetRequest,
     logoutRequest
   }, dispatch);
 }

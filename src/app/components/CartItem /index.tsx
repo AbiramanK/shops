@@ -24,6 +24,7 @@ export interface ICartItemProps {
   counterfiet: any;
   productCount: any;
   totalPrice: any;
+  removeCart: any;
 }
 
 export interface ICartItemState {
@@ -38,7 +39,7 @@ export class CartItem extends React.Component<ICartItemProps, ICartItemState> {
   }
 
   removeCart = () => {
-
+    this.props.removeCart(this.props.id);
   }
 
   incrementCartItemCount = () => {
