@@ -10,7 +10,7 @@ import {
 } from '../../utilities/AuthActionUtilities';
 
 
-export const register = async (name: any, email: any, password: any) => {
+export const register = async (params: {name: any, email: any, password: any}) => {
     return new Promise((resolve, reject) => {
         fetch(`${BASE_API}auth/register`, {
             headers: {
@@ -18,9 +18,9 @@ export const register = async (name: any, email: any, password: any) => {
             },
             method: 'POST',
             body: JSON.stringify({
-                name,
-                email,
-                password
+                name: params.name,
+                email: params.email,
+                password: params.password
             }),
         })
             .then((res) => {

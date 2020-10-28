@@ -37,26 +37,33 @@ export class RootRouter extends Component<ILoginProps, ILoginState> {
   render() {
     return (
       // <Router history={history}>
-        <Spin
-          tip="Loading..."
-          spinning={this.props.isLoading}
-        >
-          <div className="App">
-            <React.Suspense fallback={"Loading"}>
-              <Switch>
-                <Route exact path="/">
-                  <Login />
-                </Route>
-                <Route path="/home">
-                  <Home />
-                </Route>
-                <Route path="/register">
-                  <Register />
-                </Route>
-              </Switch>
-            </React.Suspense>
-          </div>
-        </Spin>
+      <Spin
+        tip="Loading..."
+        spinning={this.props.isLoading}
+      >
+        <div className="App">
+          <React.Suspense fallback={"Loading"}>
+            <Switch>
+              <Route
+                exact
+                path="/"
+              >
+                <Login />
+              </Route>
+              <Route
+                path="/home"
+              >
+                <Home />
+              </Route>
+              <Route
+                path="/register"
+              >
+                <Register />
+              </Route>
+            </Switch>
+          </React.Suspense>
+        </div>
+      </Spin>
       // </Router>
     )
   }

@@ -7,12 +7,18 @@ import {
 } from 'redux-saga/effects';
 import {
     makeLogin,
-    handleLoginResponse
-} from './Auth/Login';
+    handleLoginResponse,
+
+    makeRegister,
+    handleRegisterResponse
+} from './Auth';
 
 export default function* rootSaga() {
     yield all([
         makeLogin(),
-        handleLoginResponse()
+        handleLoginResponse(),
+
+        makeRegister(),
+        handleRegisterResponse(),
     ])
 }

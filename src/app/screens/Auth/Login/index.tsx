@@ -154,6 +154,10 @@ export class Login extends Component<ILoginProps, ILoginState> {
               <p className="forgot-password text-right">
                 Forgot <a href="#">password?</a>
               </p>
+
+              <p className="forgot-password text-center">
+                Don't have an acoount? <a href="/register">create one</a>
+              </p>
             </form>
           </div>
         </div>
