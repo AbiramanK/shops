@@ -12,6 +12,11 @@ import {
     makeRegister,
     handleRegisterResponse
 } from './Auth';
+import {
+    getProducts,
+    addProducts,
+    removeProduct
+} from './Product';
 
 export default function* rootSaga() {
     yield all([
@@ -20,5 +25,9 @@ export default function* rootSaga() {
 
         makeRegister(),
         handleRegisterResponse(),
+
+        getProducts(),
+        addProducts(),
+        removeProduct()
     ])
 }

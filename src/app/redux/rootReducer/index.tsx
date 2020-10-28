@@ -5,8 +5,11 @@ import {
     routerMiddleware 
 } from 'connected-react-router'
 
-import AuthReducer from './../reducers/AuthReducer';
-import LoaderReducer from './../reducers/LoaderReducer';
+import {
+    AuthReducer,
+    LoaderReducer,
+    ProductReducer
+} from './../reducers';
 
 export const history = createBrowserHistory()
 
@@ -14,7 +17,8 @@ export const history = createBrowserHistory()
 const rootReducer = (history: any) => combineReducers({
     router: connectRouter(history),
     auth: AuthReducer,
-    loader: LoaderReducer
+    loader: LoaderReducer,
+    product: ProductReducer
 });
 
 export default rootReducer;
