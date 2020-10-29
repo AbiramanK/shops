@@ -11,7 +11,8 @@ import {
 
 
 const INITIAL_STATE = {
-    userDetails: {}
+    userDetails: {},
+    isLoggedIn: false
 };
 
 const AuthReducer = (state = INITIAL_STATE, action: any) => {
@@ -29,7 +30,8 @@ const AuthReducer = (state = INITIAL_STATE, action: any) => {
 
             return {
                 ...state,
-                userDetails: action.payload
+                userDetails: action.payload,
+                isLoggedIn: true
             };
         case LOGOUT_REQUEST:
 
@@ -40,7 +42,8 @@ const AuthReducer = (state = INITIAL_STATE, action: any) => {
 
             return {
                 ...state,
-                userDetails: {}
+                userDetails: {},
+                isLoggedIn: false
             };
 
         case REGISTER_REQUEST:

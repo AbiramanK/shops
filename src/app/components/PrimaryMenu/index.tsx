@@ -55,6 +55,14 @@ export class PrimaryMenu extends React.Component<IPrimaryMenuProps, IPrimaryMenu
         }
     }
 
+    componentDidMount = async() => {
+        let token = await GetAccessToken();
+        if(token == null) {
+          this.props.history.push("/");
+        }
+    };
+    
+
     signOut = () => {
         this.props.logout();
         RemoveAccessToken();
@@ -119,7 +127,7 @@ export class PrimaryMenu extends React.Component<IPrimaryMenuProps, IPrimaryMenu
                                     <Link className="nav-link primary-menu-nav-link" style={{ color: "#FFFFFF" }} to={"/home"}>Home</Link>
                                 </li>
                                 <li className="nav-item">
-                                    <Link className="nav-link primary-menu-nav-link" style={{ color: "#FFFFFF" }} to={"/employee/add"}>Create</Link>
+                                    <Link className="nav-link primary-menu-nav-link" style={{ color: "#FFFFFF" }} to={"#"}>Create</Link>
                                 </li>
                                 <li className="nav-item">
                                     <Link className="nav-link primary-menu-nav-link" style={{ color: "#FFFFFF" }} to={"#"}>About Us</Link>

@@ -6,6 +6,10 @@ import SimpleReactValidator from 'simple-react-validator';
 import {
   Spin
 } from 'antd';
+import {
+  RouteComponentProps,
+  withRouter
+} from 'react-router-dom';
 
 import {
   showWarnMessage
@@ -14,13 +18,16 @@ import {
 import {
   registerRequest
 } from '../../../redux/actions/Auth';
+import {
+  GetAccessToken
+} from './../../../actions/Auth';
 
 import "./../../../assets/css/form.css";
 import "./index.css";
 
 const { connect } = require('react-redux');
 
-export interface IRegisterProps {
+export interface IRegisterProps extends RouteComponentProps {
   registerRequest: any;
   isLoading: any;
 }
@@ -52,13 +59,18 @@ export class Register extends Component<IRegisterProps, IRegisterState> {
     this.handleInputChange = this.handleInputChange.bind(this);
   }
 
-  componentDidMount() {
+  componentDidMount = async() => {
     if (process.env.NODE_ENV === "development") {
       this.setState({
         name: "Abiraman K",
         email: "abiramancit@gmail.com",
         password: "12345678"
       })
+    }
+
+    let token = await GetAccessToken();
+    if (token != null) {
+      this.props.history.push("/home");
     }
   }
 
@@ -77,6 +89,14 @@ export class Register extends Component<IRegisterProps, IRegisterState> {
         email,
         password
       })
+
+      setTimeout(async () => {
+        let token = await GetAccessToken();
+        if (token != null) {
+          this.props.history.push("/home");
+        }
+      }, 2000);
+
     } else {
       showWarnMessage("Please, fill all the details");
     }
@@ -196,4 +216,4 @@ const mapDispatchToProps = (dispatch: any) => {
   }, dispatch);
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Register)
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Register))

@@ -6,6 +6,10 @@ import SimpleReactValidator from 'simple-react-validator';
 import {
   Spin
 } from 'antd';
+import {
+  RouteComponentProps,
+  withRouter
+} from 'react-router-dom';
 
 import {
   showWarnMessage
@@ -14,15 +18,20 @@ import {
 import {
   loginRequest
 } from '../../../redux/actions/Auth';
+import {
+  GetAccessToken
+} from './../../../actions/Auth';
 
 import "./../../../assets/css/form.css";
 import "./index.css";
 
 const { connect } = require('react-redux');
 
-export interface ILoginProps {
+export interface ILoginProps extends RouteComponentProps{
   loginRequest: any;
   isLoading: any;
+  isLoggedIn: any;
+  userDetails: any;
 }
 
 export interface ILoginState {
@@ -50,12 +59,17 @@ export class Login extends Component<ILoginProps, ILoginState> {
     this.handleInputChange = this.handleInputChange.bind(this);
   }
 
-  componentDidMount() {
+  componentDidMount = async() => {
     if (process.env.NODE_ENV === "development") {
       this.setState({
         email: "abiramancit@gmail.com",
         password: "12345678"
       })
+    }
+
+    let token = await GetAccessToken();
+    if (token != null) {
+      this.props.history.push("/home");
     }
   }
 
@@ -72,6 +86,13 @@ export class Login extends Component<ILoginProps, ILoginState> {
         email,
         password
       })
+
+      setTimeout(async() => {
+        let token = await GetAccessToken();
+        if(token != null) {
+          this.props.history.push("/home");
+        }
+      }, 2000);
     } else {
       showWarnMessage("Please, fill all the details");
     }
@@ -168,7 +189,9 @@ export class Login extends Component<ILoginProps, ILoginState> {
 
 const mapStateToProps = (state: any) => {
   return {
-    isLoading: state.loader.isLoading
+    isLoading: state.loader.isLoading,
+    userDetails: state.auth.userDetails,
+    isLoggedIn: state.auth.isLoggedIn
   }
 }
 
@@ -178,4 +201,4 @@ const mapDispatchToProps = (dispatch: any) => {
   }, dispatch);
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Login)
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Login))
