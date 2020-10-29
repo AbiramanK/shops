@@ -16,6 +16,7 @@ import {
 
 export interface ICartItemProps {
   id: any;
+  productId: any;
   name: any;
   imgUrl: any;
   description: any;
@@ -26,6 +27,7 @@ export interface ICartItemProps {
   totalPrice: any;
   removeCart: any;
   updateCart: any;
+  addToCheckout: any;
 }
 
 export interface ICartItemState {
@@ -57,6 +59,14 @@ export class CartItem extends React.Component<ICartItemProps, ICartItemState> {
     })
   }
 
+  addToCheckout = () => {
+    this.props.addToCheckout({
+      productId: this.props.productId,
+      productCount: this.props.productCount,
+      totalPrice: this.props.totalPrice
+    })
+  }
+
   public render() {
     return (
       <div
@@ -75,7 +85,6 @@ export class CartItem extends React.Component<ICartItemProps, ICartItemState> {
           className="cart-item-description"
         >{this.props.description}</span>
         <span>$ {this.props.unitPrice}</span>
-        <span>{this.props.productCount}</span>
         <span>{this.props.totalPrice}</span>
         <div
           style={{
@@ -142,6 +151,14 @@ export class CartItem extends React.Component<ICartItemProps, ICartItemState> {
             />
           </Popconfirm>
         </div>
+
+        <button
+          type="button"
+          className="btn btn-success add-to-cart-button"  
+          onClick={this.addToCheckout}
+        >
+          Checkout
+        </button>
       </div>
     );
   }

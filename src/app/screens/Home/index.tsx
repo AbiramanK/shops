@@ -23,7 +23,8 @@ import {
   productRemoveRequest
 } from './../../redux/actions/Product';
 import {
-  cartGetRequest
+  cartGetRequest,
+  cartAddRequest
 } from './../../redux/actions/Cart';
 import {
   checkoutGetRequest
@@ -41,6 +42,7 @@ export interface IHomeProps extends RouteComponentProps{
   productRemoveRequest: any;
   cartGetRequest: any;
   checkoutGetRequest: any;
+  cartAddRequest: any;
   logoutRequest: any;
   products: any;
   carts: any;
@@ -60,6 +62,7 @@ export class Home extends Component<IHomeProps, IHomeState> {
     }
 
     this.loadProducts = this.loadProducts.bind(this);
+    this.addProductToCart = this.addProductToCart.bind(this);
   }
 
   componentDidMount = () => {
@@ -79,6 +82,16 @@ export class Home extends Component<IHomeProps, IHomeState> {
   loadCheckouts = () => {
     this.props.checkoutGetRequest();
   }
+
+  addProductToCart = (params: {productId: any, productCount: any, totalPrice: any}) => {
+    this.props.cartAddRequest({
+      productId: params.productId,
+      productCount: params.productCount,
+      totalPrice: params.totalPrice
+    })
+
+    this.loadCarts();
+  }
  
   public render() {
     return (
@@ -96,12 +109,14 @@ export class Home extends Component<IHomeProps, IHomeState> {
           {this.props.products.map((product: any, index: any) => {
             return (
               <ProductItem
+                id={product.id}
                 name={product.name}
                 imgUrl={product.img_url}
                 availableCount={product.available_count}
                 description={product.description}
                 unitPrice={product.unit_price}
                 counterfiet={product.counterfielt}
+                addToCart={this.addProductToCart}
               />
             )
           })}
@@ -126,6 +141,7 @@ const mapDispatchToProps = (dispatch: any) => {
     productAddRequest,
     productRemoveRequest,
     cartGetRequest,
+    cartAddRequest,
     checkoutGetRequest,
     logoutRequest
   }, dispatch);

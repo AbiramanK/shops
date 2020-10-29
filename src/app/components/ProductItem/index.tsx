@@ -7,12 +7,14 @@ import {
 } from './../../Configs';
 
 export interface IProductItemProps {
+    id: any;
     name: any;
     imgUrl: any;
     description: any;
     availableCount: any;
     unitPrice: any;
     counterfiet: any;
+    addToCart: any;
 }
 
 export interface IProductItemState {
@@ -24,6 +26,16 @@ export class ProductItem extends React.Component<IProductItemProps, IProductItem
 
     this.state = {
     }
+
+    this.addToCart = this.addToCart.bind(this);
+  }
+
+  addToCart = () => {
+    this.props.addToCart({
+      productId: this.props.id,
+      productCount: 1,
+      totalPrice: 1 * this.props.unitPrice
+    })
   }
 
   public render() {
@@ -48,6 +60,7 @@ export class ProductItem extends React.Component<IProductItemProps, IProductItem
         <button
           type="button"
           className="btn btn-success add-to-cart-button"  
+          onClick={this.addToCart}
         >
           Add to cart
         </button>

@@ -24,7 +24,8 @@ import {
   cartUpdateRequest
 } from './../../redux/actions/Cart';
 import {
-  checkoutGetRequest
+  checkoutGetRequest,
+  checkoutAddRequest
 } from './../../redux/actions/Checkout';
 import {
   logoutRequest
@@ -39,6 +40,7 @@ export interface ICartProps extends RouteComponentProps{
   cartRemoveRequest: any;
   cartUpdateRequest: any;
   checkoutGetRequest: any;
+  checkoutAddRequest: any;
   logoutRequest: any;
   carts: any;
   checkouts: any;
@@ -61,6 +63,7 @@ export class Cart extends Component<ICartProps, ICartState> {
     this.loadCarts = this.loadCarts.bind(this);
     this.removeCart = this.removeCart.bind(this);
     this.updateCart = this.updateCart.bind(this);
+    this.addToCheckout = this.addToCheckout.bind(this);
   }
 
   componentDidMount = () => {
@@ -87,6 +90,16 @@ export class Cart extends Component<ICartProps, ICartState> {
     })
   }
 
+  addToCheckout = (params: {productId: any, productCount: any, totalPrice: any}) => {
+    this.props.checkoutAddRequest({
+      ...params
+    })
+
+    setTimeout(() => {
+      this.loadCheckouts()
+    }, 2000);
+  }
+
   public render() {
     return (
       <div
@@ -104,16 +117,18 @@ export class Cart extends Component<ICartProps, ICartState> {
             return (
               <CartItem
                 id={cart.id}
+                productId={cart.product.id}
                 name={cart.product.name}
                 imgUrl={cart.product.img_url}
                 availableCount={cart.product.available_count}
                 description={cart.product.description}
                 unitPrice={cart.product.unit_price}
                 counterfiet={cart.product.counterfielt}
-                totalPrice={cart.totalPrice}
+                totalPrice={parseInt(cart.total_price)}
                 productCount={cart.product_count}
                 removeCart={this.removeCart}
                 updateCart={this.updateCart}
+                addToCheckout={this.addToCheckout}
               />
             )
           })}
@@ -139,6 +154,7 @@ const mapDispatchToProps = (dispatch: any) => {
     cartRemoveRequest,
     cartUpdateRequest,
     checkoutGetRequest,
+    checkoutAddRequest,
     logoutRequest
   }, dispatch);
 }
